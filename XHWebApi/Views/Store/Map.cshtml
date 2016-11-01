@@ -1,0 +1,154 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>小恒水饺</title>
+    <link rel="stylesheet" href="http://cache.amap.com/lbs/static/main1119.css"/>
+    <style type="text/css">
+     
+           #result {
+            margin: 0;
+            padding: 0;
+            z-index: 999;
+            position: absolute;
+            background-color: white;
+            max-height: 100%;
+            overflow-y: auto;
+            top: 100px;
+            right: 0;
+            width: 280px;
+        }
+         .title {
+            font: 13px 'Microsoft Yahei';
+            color: #09f
+        }
+        .amap-info-content {
+            font-size: 12px
+        }
+    </style>
+    <script type="text/javascript" src="http://webapi.amap.com/maps?v=1.3&key=e67b5c2d091a4bd44c27f5926eca797a"></script>
+
+    <script type="text/javascript" src="http://cache.amap.com/lbs/static/addToolbar.js"></script>
+</head>
+<body>
+
+<div id="container"></div>
+   
+<div id="myPageTop">
+    <table>
+   
+        <tr>
+            <td>
+                <input id="tipinput" align="middle" width ="200px"/><img src="../../Images/search.png" width ="20px" height ="20px" onclick="addressquery()" align="middle"></img>
+                <button onclick="lbsquerysetting()" align="middle">查询附近</button>
+            </td>
+        </tr>
+    </table>
+</div>
+    <div id="result"></div>
+<script type="text/javascript">
+    //初始化地图对象，加载地图    
+    var map = new AMap.Map("container", {
+        resizeEnable: true,
+        zoom: 12 
+    });
+
+    map.on('click', function (e) {
+  
+        //查询附近店面
+       lbsquery([e.lnglat.getLng(),e.lnglat.getLat()]);
+    });
+    addCloudLayer();  //叠加云数据图层
+    var cloudDataLayer = null;
+        function addCloudLayer() {
+            //加载云图层插件
+            map.plugin('AMap.CloudDataLayer', function () {
+                var layerOptions = {
+                    query: {  },
+                    clickable: true
+                };
+                 cloudDataLayer = new AMap.CloudDataLayer('579056ff2376c1123d4132e8', null); //实例化云图层类
+                cloudDataLayer.setMap(map); //叠加云图层到地图
+                AMap.event.addListener(cloudDataLayer, 'click', function (result) {
+                    var clouddata = result.data;
+                    var photo = [];
+                    if (clouddata._image[0]) {//如果有上传的图片
+                        photo = ['<img width=240 height=100 src="' + clouddata._image[0]._preurl + '"><br>'];
+                    }
+                    var infoWindow = new AMap.InfoWindow({
+                        content: "<font class='title'>" + clouddata._name + "</font><hr/>" + photo.join("") + "地址：" + clouddata._address + "<br />",//+ "电话：" + clouddata._telephone + "<br />" ,
+                        size: new AMap.Size(0, 0),
+                        autoMove: true,
+                        offset: new AMap.Pixel(0, -25)
+                    });
+                    infoWindow.open(map, clouddata._location);
+                });
+            });
+        }
+     var enablelbsquery = false;
+        function lbsquerysetting() {
+
+            enablelbsquery = !enablelbsquery ;
+        }
+        function addressquery() {
+            var para = document.getElementById('tipinput').value;
+            var layerOptions = {
+                map: map,//地图对象
+                panel: 'result',//div的id或dom元素
+                keywords: para,//关键字
+                pageSize: 5,//页大小
+                orderBy: '_id:ASC'//排序规则
+            };
+            AMap.service(["AMap.CloudDataSearch"], function () {
+              
+                var search =new AMap.CloudDataSearch('579056ff2376c1123d4132e8', layerOptions);
+               
+                search.searchByDistrict('北京市',cloudSearch_CallBack);
+                
+            });
+             
+
+        }
+
+        function lbsquery(center) {
+           
+            if (enablelbsquery == false) return;
+           // map.clear();
+            var para = document.getElementById('tipinput').value;
+            var layerOptions = {
+                map: map,//地图对象
+                panel: 'result',//div的id或dom元素
+                keywords: para,//关键字
+                pageSize: 5,//页大小
+                orderBy: '_id:ASC'//排序规则
+            };
+            AMap.service(["AMap.CloudDataSearch"], function () {
+
+                var search = new AMap.CloudDataSearch('579056ff2376c1123d4132e8', layerOptions);
+          
+                search.searchNearBy(center, 500, function (status, result) {
+             
+                });
+
+            });
+
+
+        }
+
+        function cloudSearch_CallBack(status, data) {
+           // alert(JSON.stringify(status));
+        }
+       
+     
+</script>
+
+</body>
+</html>
+
+
