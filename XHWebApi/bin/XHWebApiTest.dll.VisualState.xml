@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<VisualState xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ShowCheckBoxes="true">
+  <TopNode>[0-1007]C:\code\XiaohengWeb\XHWebApi\XHWebApi\bin\XHWebApiTest.dll</TopNode>
+  <SelectedNode>[0-1007]C:\code\XiaohengWeb\XHWebApi\XHWebApi\bin\XHWebApiTest.dll</SelectedNode>
+  <ExcludeCategories>false</ExcludeCategories>
+  <Nodes>
+    <Node UniqueName="[0-1007]C:\code\XiaohengWeb\XHWebApi\XHWebApi\bin\XHWebApiTest.dll" Expanded="true" />
+    <Node UniqueName="[0-1008]XHWebApiTest" Expanded="true" />
+    <Node UniqueName="[0-1000]XHWebApiTest.ShopTest" Expanded="true" />
+    <Node UniqueName="[0-1002]XHWebApiTest.SqliteTest" Expanded="true" />
+    <Node UniqueName="[0-1004]XHWebApiTest.WebApiTest" Expanded="true" />
+    <Node UniqueName="[0-1005]XHWebApiTest.WebApiTest.TestGet" Checked="true" />
+    <Node UniqueName="[0-1006]XHWebApiTest.WebApiTest.TestPost" Checked="true" />
+  </Nodes>
+</VisualState>

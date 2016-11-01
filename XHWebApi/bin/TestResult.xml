@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!--This file represents the results of running a test suite-->
+<test-results name="C:\code\XiaohengWeb\XHWebApi\XHWebApi\bin\XHWebApiTest.dll" total="2" errors="0" failures="0" not-run="0" inconclusive="0" ignored="0" skipped="0" invalid="0" date="2016-07-20" time="19:25:24">
+  <environment nunit-version="2.6.3.13283" clr-version="2.0.50727.8670" os-version="Microsoft Windows NT 6.2.9200.0" platform="Win32NT" cwd="C:\code\NUnit-2.6.3\bin" machine-name="DESKTOP-BCQIB17" user="0" user-domain="DESKTOP-BCQIB17" />
+  <culture-info current-culture="zh-CN" current-uiculture="zh-CN" />
+  <test-suite type="Assembly" name="C:\code\XiaohengWeb\XHWebApi\XHWebApi\bin\XHWebApiTest.dll" executed="True" result="Success" success="True" time="2.335" asserts="0">
+    <results>
+      <test-suite type="Namespace" name="XHWebApiTest" executed="True" result="Success" success="True" time="2.335" asserts="0">
+        <results>
+          <test-suite type="TestFixture" name="WebApiTest" executed="True" result="Success" success="True" time="2.334" asserts="0">
+            <results>
+              <test-case name="XHWebApiTest.WebApiTest.TestGet" executed="True" result="Success" success="True" time="1.791" asserts="1" />
+              <test-case name="XHWebApiTest.WebApiTest.TestPost" executed="True" result="Success" success="True" time="0.538" asserts="1" />
+            </results>
+          </test-suite>
+        </results>
+      </test-suite>
+    </results>
+  </test-suite>
+</test-results>
